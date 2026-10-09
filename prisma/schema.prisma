@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Tenant {
+  id        String     @id @default(cuid())
+  name      String
+  country   String     @default("AO")
+  currency  String     @default("AOA")
+  createdAt DateTime   @default(now())
+  users     User[]
+  auditLogs AuditLog[]
+}
+
+model User {
+  id        String     @id @default(cuid())
+  tenantId  String
+  email     String
+  name      String
+  role      String     @default("user")
+  createdAt DateTime   @default(now())
+  tenant    Tenant     @relation(fields: [tenantId], references: [id])
+  auditLogs AuditLog[]
+  @@unique([tenantId, email])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  tenantId  String
+  userId    String?
+  action    String
+  entity    String?
+  entityId  String?
+  metadata  Json?
+  createdAt DateTime @default(now())
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  user      User?    @relation(fields: [userId], references: [id])
+  @@index([tenantId, createdAt])
+}
+
+model LegalParameter {
+  id          String   @id @default(cuid())
+  country     String
+  code        String
+  name        String
+  value       Json
+  source      String?
+  effectiveAt DateTime
+  expiresAt   DateTime?
+  version     String
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  @@index([country, code, effectiveAt])
+}
