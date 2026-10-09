@@ -1,90 +1,46 @@
-# HIPERNOVA-AI-BUSINESS
-HIPERNOVA AI BUSINESS — AI Business Operating System multiagente para gestão empresarial, automação de processos, análise de dados e execução inteligente de operações.
-HIPERNOVA AI BUSINESS
+# HIPERNOVA AI BUSINESS
 
-AI Business Operating System — Uma empresa inteira dentro da sua IA.
+**AI Business Operating System — Uma empresa inteira dentro da sua IA.**
 
-O HIPERNOVA AI BUSINESS é uma plataforma empresarial inteligente, multiagente e orientada por IA, concebida para transformar a forma como empresas gerem operações, pessoas, finanças, clientes, vendas, compras, stock, documentos e decisões estratégicas.
+Plataforma SaaS empresarial multiagente, multi-tenant e preparada para internacionalização, começando por Angola.
 
-A plataforma combina Inteligência Artificial, automação, dados empresariais, memória institucional e agentes especializados num único sistema operacional para empresas.
+## Estado actual
 
-Visão
+Esta é a estrutura inicial de desenvolvimento (starter v0.1). Inclui uma API Fastify com verificação de saúde, definições dos agentes centrais, encaminhamento determinístico de comandos e um esquema Prisma inicial. **Não é ainda uma versão pronta para produção.**
 
-Criar uma infraestrutura digital capaz de funcionar como uma verdadeira empresa dentro da IA, onde agentes especializados colaboram entre si, analisam informação, executam tarefas autorizadas, identificam problemas e oportunidades e apresentam recomendações à administração.
+## Princípios fundamentais
 
-Principais capacidades
+- A IA não substitui motores determinísticos de contabilidade, fiscalidade ou processamento salarial.
+- Regras legais devem ser versionadas por país, fonte e período de vigência.
+- Operações críticas exigem aprovação humana.
+- Dados de cada empresa (tenant) devem permanecer isolados.
+- Acções relevantes devem gerar registos de auditoria.
+- O sistema não deve inventar dados, legislação, preços ou resultados.
+- Segredos e credenciais não devem ser guardados no repositório.
 
-- 🤖 Master Orchestrator para coordenar agentes e processos empresariais.
-- 💰 Gestão financeira, tesouraria e controlo de caixa.
-- 📊 Contabilidade e análise financeira.
-- 🧾 Fiscalidade e conformidade parametrizadas por país.
-- 👥 Recursos Humanos e gestão de colaboradores.
-- 💵 Processamento salarial, IRT e Segurança Social.
-- 🛒 Vendas, CRM e gestão de clientes.
-- 📦 Compras, fornecedores, stock e logística.
-- 🔍 Auditoria, controlo interno e rastreabilidade.
-- 📈 Business Intelligence e análise de desempenho.
-- 📧 Gestão inteligente de e-mail e documentos.
-- 📅 Secretaria executiva e gestão de agenda.
-- 💬 Atendimento através de canais digitais, incluindo WhatsApp.
-- 📣 Marketing, campanhas e geração de conteúdos.
-- 🧠 Memória empresarial e aprendizagem institucional.
-- 🌍 Arquitectura preparada para múltiplos países, moedas, empresas e idiomas.
-- 🔐 Segurança, permissões, aprovação humana e trilhos de auditoria.
+## Estrutura do projecto
 
-Arquitectura
+- `apps/api` — API HTTP baseada em Node.js, TypeScript e Fastify.
+- `packages/core` — definições dos agentes e encaminhador inicial.
+- `prisma` — esquema inicial da base de dados PostgreSQL.
+- `docs/ARCHITECTURE.md` — visão de arquitectura e limites de autonomia.
+- `docs/ROADMAP.md` — etapas de implementação.
 
-O sistema foi concebido como uma arquitectura multi-tenant, multiagente e API-first, permitindo a integração progressiva de:
+## Tecnologias previstas
 
-Web · Mobile · WhatsApp · E-mail · APIs · Agentes de IA · ERP · Business Intelligence
+TypeScript, Node.js, Fastify, PostgreSQL, Prisma, Docker e Railway. Redis e fornecedores de modelos de IA serão integrados em fases posteriores, após configuração e validação.
 
-A inteligência artificial interpreta, coordena e recomenda, enquanto componentes determinísticos executam cálculos críticos, regras contabilísticas, fiscais e financeiras.
+## Execução local
 
-Operações sensíveis devem passar por aprovação humana, de acordo com o nível de autonomia configurado.
+1. Instalar Node.js 22 ou superior.
+2. Copiar `.env.example` para `.env` e configurar `DATABASE_URL`.
+3. Instalar dependências com `npm install`.
+4. Gerar o cliente Prisma com `npm run db:generate`.
+5. Compilar com `npm run build`.
+6. Iniciar a API com `npm start`.
 
-Princípios
+A API expõe `GET /health` e `GET /api/v1`.
 
-O HIPERNOVA AI BUSINESS adopta como princípios fundamentais:
+## Segurança e estado
 
-- Não inventar dados.
-- Rastreabilidade de decisões e operações.
-- Separação entre cálculo determinístico e interpretação por IA.
-- Conhecimento legal versionado e parametrizado.
-- Segurança e isolamento entre empresas.
-- Human-in-the-loop para operações críticas.
-- Automação progressiva e controlada.
-- Arquitectura preparada para escala internacional.
-
-Primeira implementação
-
-A primeira implementação tem como foco o ecossistema empresarial da HIPERNOVA, com prioridade para o contexto de Angola, incluindo operações empresariais, financeiras, contabilísticas, fiscais, comerciais e administrativas.
-
-Posteriormente, a arquitectura será preparada para outros mercados, com perfis legais e fiscais independentes por país.
-
-Stack tecnológica
-
-A arquitectura inicial utiliza:
-
-- TypeScript
-- Node.js
-- Fastify
-- PostgreSQL
-- Prisma
-- Redis
-- OpenAI / Anthropic e outros modelos através de uma camada de abstração
-- Docker
-- Railway
-- GitHub
-
-Estado do projecto
-
-🚧 Em desenvolvimento activo
-
-O projecto está a ser construído de forma modular, começando pela infraestrutura central, autenticação, multi-tenancy, memória empresarial, auditoria, Master Orchestrator e primeiros módulos operacionais.
-
-Objectivo de longo prazo
-
-Transformar o HIPERNOVA AI BUSINESS numa plataforma SaaS empresarial internacional capaz de servir desde micro e pequenas empresas até organizações de maior dimensão, permitindo que uma empresa possa operar, analisar, automatizar e tomar decisões com uma camada inteligente de IA integrada em toda a sua estrutura.
-
-HIPERNOVA AI BUSINESS
-Uma empresa inteira dentro da sua IA.
+A autenticação, autorização robusta, isolamento de tenant ao nível das consultas, migrações, testes automatizados, gestão de segredos e monitorização ainda precisam de implementação e validação antes de qualquer utilização real. Não usar esta versão para processar pagamentos, salários ou dados sensíveis em produção.
